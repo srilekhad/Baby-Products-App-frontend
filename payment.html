@@ -1,0 +1,86 @@
+<!-- payment.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Payment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Payment Form -->
+    <div class="container mt-5">
+        <h2>Payment Details</h2>
+        <form id="payment-form">
+            <div class="form-group">
+                <label for="card-number">Card Number:</label>
+                <input type="text" class="form-control" id="card-number" required>
+            </div>
+            <div class="form-group">
+                <label for="cardholder-name">Cardholder Name:</label>
+                <input type="text" class="form-control" id="cardholder-name" required>
+            </div>
+            <div class="form-group">
+                <label for="expiry-date">Expiry Date:</label>
+                <input type="text" class="form-control" id="expiry-date" required>
+            </div>
+            <div class="form-group">
+                <label for="security-code">Security Code:</label>
+                <input type="text" class="form-control" id="security-code" required>
+            </div>
+            <div class="form-group">
+                <label for="billing-address">Billing Address:</label>
+                <textarea class="form-control" id="billing-address" required></textarea>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="makePayment()">Make Payment</button>
+        </form>
+        <div id="payment-success" class="text-success"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Function to make payment
+        function makePayment() {
+            // Get the bearer token from local storage
+            const token = localStorage.getItem('little-treasures-token');
+
+            // Make a GET request to the place_order endpoint with the bearer token
+            fetch('https://little-treasures-backend.onrender.com/shoping_app/place-order', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Display success message
+                document.getElementById('payment-success').innerText = 'Order placed successfully! Redirecting...';
+
+                // Redirect to the home page after a delay
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 2000);
+            })
+            .catch(error => {
+                console.error('Error placing order:', error);
+                document.getElementById('payment-success').innerText = 'Error placing order. Please try again later.';
+            });
+        }
+    </script>
+</body>
+
+</html>

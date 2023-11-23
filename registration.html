@@ -1,0 +1,60 @@
+<!-- registration.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Registration Form -->
+    <div class="container mt-5">
+        <h2>Registration</h2>
+        <div id="registration-error" class="text-danger"></div>
+        <form id="registration-form">
+            <!-- Input fields for the first request -->
+            <div class="form-group" id="name-container">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group" id="password-container">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+            <div class="form-group" id="reenteredPassword-container">
+                <label for="reenteredPassword">Re-enter Password:</label>
+                <input type="password" class="form-control" id="reenteredPassword" required>
+            </div>
+
+            <!-- Button for the first request -->
+            <button type="button" class="btn btn-primary" id="register-button-container" onclick="register()">Register</button>
+
+            <!-- Additional input field for OTP (hidden by default) -->
+            <div class="form-group" id="otp-container" style="display: none;">
+                <label for="otp">OTP:</label>
+                <input type="text" class="form-control" id="otp" required>
+            </div>
+
+            <!-- Button for OTP submission (hidden by default) -->
+            <button type="button" class="btn btn-primary" id="otp-button-container" onclick="submitOtp()" style="display: none;">Submit OTP</button>
+        </form>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
