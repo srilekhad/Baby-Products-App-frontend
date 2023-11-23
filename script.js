@@ -190,7 +190,7 @@ function loadPage(page) {
                 const orderHistoryHtml = orderHistoryData.order_history.map(order => {
                     const orderItemsHtml = order.order_list.map(item => `
                         <div class="order-item">
-                            <img class="item-image" src="data:image/png;base64,${item.image}" alt="${item.name}">
+                            <img class="item-image img-fluid" src="data:image/png;base64,${item.image}" alt="${item.name}">
                             <div class="item-details">
                                 <h3>${item.name}</h3>
                                 <p>${item.description}</p>
