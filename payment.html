@@ -101,6 +101,23 @@
                 document.getElementById('payment-success').innerText = 'Error placing order. Please try again later.';
             });
         }
+        // Function to validate card number (16 digits)
+function validateCardNumber(cardNumber) {
+    const cardNumberRegex = /^\d{16}$/;
+    return cardNumberRegex.test(cardNumber);
+}
+
+// Function to validate cardholder name (string)
+function validateCardholderName(cardholderName) {
+    const cardholderNameRegex = /^[a-zA-Z\s]+$/;
+    return cardholderNameRegex.test(cardholderName);
+}
+
+// Function to validate expiry date (MM/YY format)
+function validateExpiryDate(expiryDate) {
+    const expiryDateRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+    return expiryDateRegex.test(expiryDate);
+}
     </script>
 </body>
 
