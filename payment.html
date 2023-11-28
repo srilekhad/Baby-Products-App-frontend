@@ -32,10 +32,12 @@
             <div class="form-group">
                 <label for="security-code">Security Code:</label>
                 <input type="text" class="form-control" id="security-code" required>
+                <div id="security-code-error" class="text-danger"></div>
             </div>
             <div class="form-group">
                 <label for="billing-address">Billing Address:</label>
                 <textarea class="form-control" id="billing-address" required></textarea>
+                <div id="billing-address-error" class="text-danger"></div>
             </div>
             <button type="button" class="btn btn-primary" onclick="makePayment()">Make Payment</button>
         </form>
