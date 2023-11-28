@@ -49,8 +49,9 @@ function loadPage(page) {
                     data.products_data.forEach(product => {
                         productsHtml += `
                         <div class="col-md-4">
+            <div class="col-md-4">
             <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="data:image/png;base64,${product.image}" alt="${product.name}">
+                <img class="card-img-top" src="data:image/png;base64,${product.image}" alt="${product.name}" style="height: 200px;">
                 <div class="card-body">
                     <h3>${product.name}</h3>
                     <p class="card-text">${product.description}</p>
