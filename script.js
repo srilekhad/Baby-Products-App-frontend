@@ -1,9 +1,11 @@
 const token = localStorage.getItem('little-treasures-token');
 const logoutBtn = document.getElementById('logoutBtn');
+const userEmail = localStorage.getItem('little-treasures-email');
 
 // Display or hide the logout button based on token availability
-if (token) {
+if (token && userEmail) {
     logoutBtn.style.display = 'block';
+    userNameElement.textContent = `Welcome, ${userName}! (${userEmail})`;
 } else {
     logoutBtn.style.display = 'none';
 }
@@ -564,6 +566,7 @@ function login() {
         } else {
             // If OTP is not required, you can handle the successful login here
             handleSuccessfulLogin();
+            localStorage.setItem('little-treasures-email', userEmail);
         }
     })
     .catch(error => {
