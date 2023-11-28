@@ -224,6 +224,7 @@ function loadPage(page) {
             .catch(error => {
                 console.error('Error fetching wishlist data:', error);
                 document.getElementById('content').innerHTML = '<p>Error loading wishlist. Please try again later.</p>';
+                window.location.href = '/login';
             });
     }
     else if(page === "orderhistory") {
@@ -278,6 +279,7 @@ function loadPage(page) {
         .catch(error => {
             console.error('Error fetching order history:', error);
             document.getElementById('content').innerHTML = '<p>Error loading order history. Please try again later.</p>';
+            window.location.href = '/login';
         });
     }        
     else {
@@ -290,6 +292,7 @@ function loadPage(page) {
             .catch(error => {
                 console.error('Error fetching page content:', error);
                 document.getElementById('content').innerHTML = '<p>Error loading page. Please try again later.</p>';
+                window.location.href = '/login';
             });
     }
 }
