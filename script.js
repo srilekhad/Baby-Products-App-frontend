@@ -1,3 +1,20 @@
+const token = localStorage.getItem('little-treasures-token');
+const logoutBtn = document.getElementById('logoutBtn');
+
+// Display or hide the logout button based on token availability
+if (token) {
+    logoutBtn.style.display = 'block';
+} else {
+    logoutBtn.style.display = 'none';
+}
+
+// Function to logout (remove the token from local storage)
+function logout() {
+    localStorage.removeItem('little-treasures-token');
+    // Redirect to the login page or home page after logout
+    window.location.href = '/login'; // Update the URL as needed
+}
+
 // Add a function to handle product removal
 function removeProduct(productName) {
     const token = localStorage.getItem('little-treasures-token');
