@@ -94,6 +94,7 @@ function loadPage(page) {
                                     <h3>${product.name}</h3>
                                     <p class="card-text">${product.description}</p>
                                     <p class="card-text">$${product.price.toFixed(2)}</p>
+                                    <p class="card-text">${product.quantity}</p>
                                 </div>
                             </div>
                         </div>`;
