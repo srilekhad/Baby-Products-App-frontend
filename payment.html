@@ -136,6 +136,18 @@ function validateExpiryDate(expiryDate) {
     const expiryDateRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
     return expiryDateRegex.test(expiryDate);
 }
+
+        // Function to validate the security code
+        function validateSecurityCode(code) {
+            const regex = /^\d{3}$/;
+            return regex.test(code);
+        }
+
+        // Function to validate the billing address
+        function validateBillingAddress(address) {
+            // You can add your own validation logic here
+            return address.trim() !== '';
+        }
     </script>
 </body>
 
