@@ -1,3 +1,31 @@
+// Add a function to handle product removal
+function removeProduct(productName) {
+    const token = localStorage.getItem('little-treasures-token');
+
+    fetch(`https://little-treasures-backend.onrender.com/shoping_app/add-to-cart/remove-product?name=${productName}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to remove product from cart.');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Product removed:', data);
+        location.reload();
+        // Optionally, you can provide feedback to the user (e.g., update the UI)
+        // Reload the cart page or update the cart data accordingly
+    })
+    .catch(error => {
+        console.error('Remove product error:', error);
+        // Handle error (e.g., display an error message to the user)
+    });
+}
+
 // Function to load pages dynamically
 function loadPage(page) {
     // Check if the requested page is 'browse'
@@ -95,6 +123,8 @@ function loadPage(page) {
                                     <p class="card-text">${product.description}</p>
                                     <p class="card-text">$${product.price.toFixed(2)}</p>
                                     <p class="card-text">Quantity: ${product.quantity}</p>
+
+                                    <button class="btn btn-danger" onclick="removeProduct('${product.name}')">Remove</button>
                                 </div>
                             </div>
                         </div>`;
