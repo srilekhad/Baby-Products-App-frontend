@@ -50,6 +50,24 @@
     <script>
         // Function to make payment
         function makePayment() {
+            const securityCode = document.getElementById('security-code').value;
+            const billingAddress = document.getElementById('billing-address').value;
+
+            // Validate the security code
+            if (!validateSecurityCode(securityCode)) {
+                document.getElementById('security-code-error').innerText = 'Invalid security code';
+                return;
+            } else {
+                document.getElementById('security-code-error').innerText = '';
+            }
+
+            // Validate the billing address
+            if (!validateBillingAddress(billingAddress)) {
+                document.getElementById('billing-address-error').innerText = 'Billing address cannot be empty';
+                return;
+            } else {
+                document.getElementById('billing-address-error').innerText = '';
+            }
             // Validate card number
     const cardNumberInput = document.getElementById('card-number');
     if (!validateCardNumber(cardNumberInput.value)) {
