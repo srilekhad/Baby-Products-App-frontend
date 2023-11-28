@@ -49,23 +49,21 @@ function loadPage(page) {
                     data.products_data.forEach(product => {
                         productsHtml += `
                         <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
-                            <img class="card-img-top" src="data:image/png;base64,${product.image}" alt="${product.name}">
-                            <div class="card-body">
-                                <h3>${product.name}</h3>
-                                <p class="card-text">${product.description}</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="price">$${product.price.toFixed(2)}</span>
-                                        
-                                        <!-- Add to Cart button -->
-                                        <button class="btn btn-primary" onclick="addToCart('${product.name}')">Add to Cart</button>
-                                        
-                                        <!-- Add to Wishlist button -->
-                                        <button class="btn btn-secondary" onclick="addToWishlist('${product.name}')">Add to Wishlist</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>`;
+            <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="data:image/png;base64,${product.image}" alt="${product.name}">
+                <div class="card-body">
+                    <h3>${product.name}</h3>
+                    <p class="card-text">${product.description}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="price">$${product.price.toFixed(2)}</span>
+                        <!-- Add to Cart button -->
+                        <button class="btn btn-primary" onclick="addToCart('${product.name}')">Add to Cart</button>
+                        <!-- Add to Wishlist button -->
+                        <button class="btn btn-secondary" onclick="addToWishlist('${product.name}')">Add to Wishlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>`;
                     });
                     
                     productsHtml += '</div>';
