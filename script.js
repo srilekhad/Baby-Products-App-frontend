@@ -58,6 +58,36 @@ function filterProducts() {
     });
 }
 
+// Add the quantity increment function
+function addQuantity(productName) {
+    const token = localStorage.getItem('little-treasures-token');
+
+    fetch('https://little-treasures-backend.onrender.com/shoping_app/add-to-cart', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+            name: productName,
+        }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to add to cart.');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Added to cart:', data);
+        // Optionally, you can provide feedback to the user (e.g., show a success message)
+    })
+    .catch(error => {
+        console.error('Add to cart error:', error);
+        // Handle error (e.g., display an error message to the user)
+    });
+}
+
 // Function to load pages dynamically
 function loadPage(page) {
     // Check if the requested page is 'browse'
@@ -175,6 +205,9 @@ function loadPage(page) {
                                     <p class="card-text">${product.description}</p>
                                     <p class="card-text">$${product.price.toFixed(2)}</p>
                                     <p class="card-text">Quantity: ${product.quantity}</p>
+
+                                    <!-- + Button to add one more quantity -->
+                    <button class="btn btn-success" onclick="addQuantity('${product.name}')">+</button>
 
                                     <button class="btn btn-danger" onclick="removeProduct('${product.name}')">Remove</button>
                                 </div>
