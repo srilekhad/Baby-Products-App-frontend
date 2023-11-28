@@ -88,7 +88,7 @@ function addQuantity(productName) {
 
 function removeQuantity(productName) {
     const token = localStorage.getItem('little-treasures-token');
-    fetch(`https://little-treasures-backend.onrender.com/shoping_app/decrement-product?name=${productName}`, {
+    fetch(`https://little-treasures-backend.onrender.com/shoping_app/add-to-cart/decrement-product?name=${productName}`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -102,7 +102,7 @@ function removeQuantity(productName) {
     })
     .catch(error => {
         console.error('Remove quantity error:', error);
-        // location.reload();
+        location.reload();
         // Handle error (e.g., display an error message to the user)
     });
 }
