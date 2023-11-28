@@ -36,7 +36,7 @@ function removeProduct(productName) {
     })
     .then(data => {
         console.log('Product removed:', data);
-        // location.reload();
+        location.reload();
     })
     .catch(error => {
         console.error('Remove product error:', error);
@@ -102,7 +102,7 @@ function removeQuantity(productName) {
     })
     .catch(error => {
         console.error('Remove quantity error:', error);
-        location.reload();
+        // location.reload();
         // Handle error (e.g., display an error message to the user)
     });
 }
