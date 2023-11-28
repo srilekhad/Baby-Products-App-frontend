@@ -80,7 +80,7 @@ function addQuantity(productName) {
     })
     .then(data => {
         console.log('Added to cart:', data);
-        // Optionally, you can provide feedback to the user (e.g., show a success message)
+        location.reload();
     })
     .catch(error => {
         console.error('Add to cart error:', error);
