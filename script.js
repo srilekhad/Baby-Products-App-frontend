@@ -99,10 +99,10 @@ function removeQuantity(productName) {
             throw new Error('Failed to remove quantity.');
         }
         // Optionally, you can refresh the page or update the UI
+        location.reload();
     })
     .catch(error => {
         console.error('Remove quantity error:', error);
-        location.reload();
         // Handle error (e.g., display an error message to the user)
     });
 }
