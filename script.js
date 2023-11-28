@@ -36,9 +36,7 @@ function removeProduct(productName) {
     })
     .then(data => {
         console.log('Product removed:', data);
-        location.reload();
-        // Optionally, you can provide feedback to the user (e.g., update the UI)
-        // Reload the cart page or update the cart data accordingly
+        // location.reload();
     })
     .catch(error => {
         console.error('Remove product error:', error);
