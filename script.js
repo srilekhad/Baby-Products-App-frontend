@@ -430,7 +430,7 @@ function addProduct() {
     const description = document.getElementById('description').value;
     const imageInput = document.getElementById('image');
     const image = imageInput.files[0]; // Assuming you only want to upload one image
-    const category = document.getElementById('category');
+    const category = document.getElementById('category').value;
 
     // Convert image to base64
     const reader = new FileReader();
