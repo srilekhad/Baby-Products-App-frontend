@@ -566,7 +566,7 @@ function login() {
         } else {
             // If OTP is not required, you can handle the successful login here
             handleSuccessfulLogin();
-            localStorage.setItem('little-treasures-email', userEmail);
+            localStorage.setItem('little-treasures-email', email);
         }
     })
     .catch(error => {
