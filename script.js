@@ -114,6 +114,14 @@ function loadPage(page) {
             document.getElementById('content').innerHTML = content;
         });
     }
+        else if(page === 'about') {
+        fetch(`${page}.html`)
+        .then(response => response.text())
+        .then(content => {
+            // Insert the content into the 'content' div
+            document.getElementById('content').innerHTML = content;
+        });
+    }
     else if (page === 'cart') {
         // Fetch the cart data using the bearer token
         const token = localStorage.getItem('little-treasures-token');
