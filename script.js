@@ -26,6 +26,18 @@ function removeProduct(productName) {
     });
 }
 
+// Function to filter products based on the selected category
+function filterProducts() {
+    const selectedCategory = document.getElementById('category').value;
+
+    // Show or hide product cards based on the selected category
+    const productCards = document.querySelectorAll('.product-card');
+    productCards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        card.style.display = selectedCategory === 'all' || category === selectedCategory ? 'block' : 'none';
+    });
+}
+
 // Function to load pages dynamically
 function loadPage(page) {
     // Check if the requested page is 'browse'
@@ -41,32 +53,45 @@ function loadPage(page) {
             .then(data => {
                 // Check if 'products_data' is defined in the response
                 if (data && data.products_data) {
+                    // Get unique categories from the products data
+                    const categories = [...new Set(data.products_data.map(product => product.category))];
+
+                    // Build HTML content for the category dropdown
+                    let categoryDropdown = '<label for="category">Filter by Category:</label>';
+                    categoryDropdown += '<select id="category" onchange="filterProducts()">';
+                    categoryDropdown += '<option value="all">All Categories</option>';
+                    categories.forEach(category => {
+                        categoryDropdown += `<option value="${category}">${category}</option>`;
+                    });
+                    categoryDropdown += '</select>';
+
                     // Build HTML content based on the API response
                     let productsHtml = '<h2>Browse Products</h2>';
+                    productsHtml += categoryDropdown;
                     productsHtml += '<div class="row">';
-                    
+
                     // Loop through the products_data array in the response
                     data.products_data.forEach(product => {
                         productsHtml += `
-                       <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="data:image/png;base64,${product.image}" alt="${product.name}">
-                <div class="card-body">
-                    <h3>${product.name}</h3>
-                    <p class="card-text">${product.description}</p>
-                    <p class="card-text">Category: ${product.category}</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="price">$${product.price.toFixed(2)}</span>
-                        <!-- Add to Cart button -->
-                        <button class="btn btn-primary" onclick="addToCart('${product.name}')">Add to Cart</button>
-                        <!-- Add to Wishlist button -->
-                        <button class="btn btn-secondary" onclick="addToWishlist('${product.name}')">Add to Wishlist</button>
-                    </div>
-                </div>
-            </div>
-        </div>`;
+                            <div class="col-md-4 product-card" data-category="${product.category}">
+                                <div class="card mb-4 box-shadow">
+                                    <img class="card-img-top" src="data:image/png;base64,${product.image}" alt="${product.name}">
+                                    <div class="card-body">
+                                        <h3>${product.name}</h3>
+                                        <p class="card-text">${product.description}</p>
+                                        <p class="card-text">Category: ${product.category}</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="price">$${product.price.toFixed(2)}</span>
+                                            <!-- Add to Cart button -->
+                                            <button class="btn btn-primary" onclick="addToCart('${product.name}')">Add to Cart</button>
+                                            <!-- Add to Wishlist button -->
+                                            <button class="btn btn-secondary" onclick="addToWishlist('${product.name}')">Add to Wishlist</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
                     });
-                    
+
                     productsHtml += '</div>';
 
                     // Update the content div with the built HTML
