@@ -1,11 +1,12 @@
 const token = localStorage.getItem('little-treasures-token');
 const logoutBtn = document.getElementById('logoutBtn');
 const userEmail = localStorage.getItem('little-treasures-email');
+const userEmailElement = document.getElementById('userEmail');
 
 // Display or hide the logout button based on token availability
 if (token && userEmail) {
     logoutBtn.style.display = 'block';
-    userNameElement.textContent = `Welcome, (${userEmail})`;
+    userEmailElement.textContent = `Welcome, (${userEmail})`;
 } else {
     logoutBtn.style.display = 'none';
 }
