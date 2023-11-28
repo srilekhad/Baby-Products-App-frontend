@@ -88,6 +88,27 @@ function addQuantity(productName) {
     });
 }
 
+function removeQuantity(productName) {
+    const token = localStorage.getItem('little-treasures-token');
+    fetch(`https://little-treasures-backend.onrender.com/shoping_app/decrement-product?name=${productName}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to remove quantity.');
+        }
+        // Optionally, you can refresh the page or update the UI
+    })
+    .catch(error => {
+        console.error('Remove quantity error:', error);
+        location.reload();
+        // Handle error (e.g., display an error message to the user)
+    });
+}
+
 // Function to load pages dynamically
 function loadPage(page) {
     // Check if the requested page is 'browse'
@@ -205,6 +226,9 @@ function loadPage(page) {
                                     <p class="card-text">${product.description}</p>
                                     <p class="card-text">$${product.price.toFixed(2)}</p>
                                     <p class="card-text">Quantity: ${product.quantity}</p>
+
+                                    <!-- - Button to remove one quantity -->
+                <button class="btn btn-warning" onclick="removeQuantity('${product.name}')">-</button>
 
                                     <!-- + Button to add one more quantity -->
                     <button class="btn btn-success" onclick="addQuantity('${product.name}')">+</button>
