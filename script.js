@@ -172,6 +172,7 @@ function loadPage(page) {
             .catch(error => {
                 console.error('Error fetching cart data:', error);
                 document.getElementById('content').innerHTML = '<p>Error loading cart. Please try again later.</p>';
+                window.location.href = '/login';
             });
     }
     else if (page === 'wishlist') {
