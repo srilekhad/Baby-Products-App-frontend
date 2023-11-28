@@ -50,6 +50,27 @@
     <script>
         // Function to make payment
         function makePayment() {
+            // Validate card number
+    const cardNumberInput = document.getElementById('card-number');
+    if (!validateCardNumber(cardNumberInput.value)) {
+        alert('Invalid card number. Please enter a valid 16-digit card number.');
+        return;
+    }
+
+    // Validate cardholder name
+    const cardholderNameInput = document.getElementById('cardholder-name');
+    if (!validateCardholderName(cardholderNameInput.value)) {
+        alert('Invalid cardholder name. Please enter a valid name.');
+        return;
+    }
+
+    // Validate expiry date
+    const expiryDateInput = document.getElementById('expiry-date');
+    if (!validateExpiryDate(expiryDateInput.value)) {
+        alert('Invalid expiry date. Please enter a valid MM/YY format.');
+        return;
+    }
+            
             // Get the bearer token from local storage
             const token = localStorage.getItem('little-treasures-token');
 
