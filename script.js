@@ -54,6 +54,7 @@ function loadPage(page) {
                 <div class="card-body">
                     <h3>${product.name}</h3>
                     <p class="card-text">${product.description}</p>
+                    <p class="card-text">Category: ${product.category}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="price">$${product.price.toFixed(2)}</span>
                         <!-- Add to Cart button -->
