@@ -454,7 +454,9 @@ function addToWishlist(productName) {
 function addProduct() {
     // Retrieve the Bearer token from local storage
     const token = localStorage.getItem('little-treasures-token');
-
+    if(!token) {
+        window.location.href = '/login';
+    }
     // Get form data
     const name = document.getElementById('name').value;
     const price = parseFloat(document.getElementById('price').value);
